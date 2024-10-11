@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Meta
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Plataformas
+  - Jugador
+  - Enemigo
+  - Pisos
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Escenario
+    uniqueID: 4286483251
+    locked: 0
+  - name: Mapa
+    uniqueID: 4067035821
+    locked: 0
+  - name: Objetos
+    uniqueID: 3830687235
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
