@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    [Header("Configuracion")]
-    [SerializeField] private float vida = 5f;
+    [SerializeField]
+    private PerfilJugador perfilJugador;
+    public PerfilJugador PerfilJugador { get => perfilJugador; }
 
     private Animator miAnimator;
 
     public void ModificarVida(float puntos)
     {
-        vida += puntos;
+        perfilJugador.Vida += puntos;
         Debug.Log(EstasVivo());
         if (!EstasVivo())
         {
@@ -22,7 +23,7 @@ public class Jugador : MonoBehaviour
 
     private bool EstasVivo()
     {
-        return vida > 0;
+        return perfilJugador.Vida > 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

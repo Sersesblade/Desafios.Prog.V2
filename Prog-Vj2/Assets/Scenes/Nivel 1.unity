@@ -12724,6 +12724,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mochila: {fileID: 17153261}
   padreObjetivos: {fileID: 2074758987}
+--- !u!114 &680487901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650501922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc998e257a790f41a8a91792c7a16bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perfilJugador: {fileID: 11400000, guid: a7944deec0992b9449d612e2477d5bc6, type: 2}
 --- !u!1 &735367436
 GameObject:
   m_ObjectHideFlags: 0
@@ -18761,6 +18774,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 230779863}
     m_Modifications:
+    - target: {fileID: 358648822713118475, guid: d327370fbdde0184390995896e24fe24, type: 3}
+      propertyPath: perfilJugador
+      value: 
+      objectReference: {fileID: 11400000, guid: a7944deec0992b9449d612e2477d5bc6, type: 2}
     - target: {fileID: 2772688002467883744, guid: d327370fbdde0184390995896e24fe24, type: 3}
       propertyPath: saltoSFX
       value: 
@@ -18835,6 +18852,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4906737412490582808, guid: d327370fbdde0184390995896e24fe24, type: 3}
       insertIndex: -1
       addedObject: {fileID: 680487900}
+    - targetCorrespondingSourceObject: {fileID: 4906737412490582808, guid: d327370fbdde0184390995896e24fe24, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 680487901}
     - targetCorrespondingSourceObject: {fileID: 4906737412490582808, guid: d327370fbdde0184390995896e24fe24, type: 3}
       insertIndex: -1
       addedObject: {fileID: 680487886}

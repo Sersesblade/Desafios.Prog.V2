@@ -11,6 +11,8 @@ public class Puzzle : MonoBehaviour
     private Stack<GameObject> items;
     private Dictionary<string, GameObject> inventario;
 
+    private Progresion progresionJugador;
+
     private void Awake()
     {
         objetivos = new Queue<GameObject>();
@@ -18,6 +20,9 @@ public class Puzzle : MonoBehaviour
         inventario = new Dictionary<string, GameObject>();
         CargarObjetivos();
         VerObjetivos();
+
+        progresionJugador = GetComponent<Progresion>();
+
     }
 
     private void CargarObjetivos()
@@ -57,14 +62,30 @@ public class Puzzle : MonoBehaviour
             inventario.Add(objetivo.name, objetivo);
             VerObjetivos();
             objetivo.transform.SetParent(mochila.transform);
+            progresionJugador.GanarExperiencia(progresionJugador.PerfilJugador.Exp_Obtenida);
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1) && inventario.ContainsKey("Rubi")) UsarInventario(inventario["Rubi"]);
-        if (Input.GetKeyDown(KeyCode.F2) && inventario.ContainsKey("Amatista")) UsarInventario(inventario["Amatista"]);
-        if (Input.GetKeyDown(KeyCode.F3) && inventario.ContainsKey("Diamante")) UsarInventario(inventario["Diamante"]);
+        if (Input.GetKeyDown(KeyCode.F1) && inventario.ContainsKey("Rubi"))
+        {
+            UsarInventario(inventario["Rubi"]);
+            ///Muestra en consola el nivel del personaje al precionar la tecla solicitada.
+            Debug.Log(progresionJugador.PerfilJugador.Nivel);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2) && inventario.ContainsKey("Amatista"))
+        {
+            UsarInventario(inventario["Amatista"]);
+            Debug.Log(progresionJugador.PerfilJugador.Nivel);
+        }
+        if (Input.GetKeyDown(KeyCode.F3) && inventario.ContainsKey("Diamante"))
+        {
+            UsarInventario(inventario["Diamante"]);
+            Debug.Log(progresionJugador.PerfilJugador.Nivel);
+        }
+        
     }
 
     private void UsarInventario(GameObject item) {
