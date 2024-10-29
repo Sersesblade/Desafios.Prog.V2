@@ -13,8 +13,7 @@ public class Curacion : MonoBehaviour
         {
             Jugador jugador = other.GetComponent<Jugador>();
             jugador.ModificarVida(puntos);
-            Debug.Log("Puntos de daño realizados al jugador " + puntos);
-
+            Debug.Log("Puntos de curacion realizados al jugador " + puntos);
         }
     }
 

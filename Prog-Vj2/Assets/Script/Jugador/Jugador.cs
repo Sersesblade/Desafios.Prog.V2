@@ -13,25 +13,24 @@ public class Jugador : MonoBehaviour
     //Eventos del Jugador
     [SerializeField]
     private UnityEvent<int> OnLivesChanged;
-    [SerializeField]
-    private UnityEvent<string> OnTextChanged;
+    
 
     private void Start()
     {
         OnLivesChanged.Invoke(perfilJugador.Vida);
-        OnTextChanged.Invoke(perfilJugador.Vida.ToString());
     }
 
 
     public void ModificarVida(int puntos)
     {
-        perfilJugador.Vida += puntos;
-        OnTextChanged.Invoke(perfilJugador.Vida.ToString());
-        Debug.Log(EstasVivo());
-        if (!EstasVivo())
+        //Condicional para limitar la curacion del jugador.
+        if (perfilJugador.Vida < perfilJugador.VidaMax && puntos > 0 || puntos < 0)
         {
-            Debug.Log("Perdiste");
+            perfilJugador.Vida += puntos;
+            OnLivesChanged.Invoke(perfilJugador.Vida); 
         }
+        Debug.Log(EstasVivo());
+        if (!EstasVivo()){ Debug.Log("Perdiste"); }
     }
 
 

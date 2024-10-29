@@ -43,9 +43,16 @@ public class PerfilJugador : ScriptableObject
     //Configuraciones de los stats del personaje.
     [Header("Configuracion de Atributos")]
     [SerializeField]
-    [Range(5, 10)]
-    private int vida = 5;
+    [Range(1, 5)]
+    [Tooltip("Vida inicial del jugador")]
+    private int vida = 4;
     public int Vida { get => vida; set => vida = value; }
+
+    [SerializeField]
+    [Range(3, 5)]
+    [Tooltip("Limite de vida que puede tener el jugador")]
+    private int vidaMax = 5;
+    public int VidaMax { get => vidaMax; set => vidaMax = value; }
 
     //Configuraciones de los Sonidos.
     [Header("Configuracion de Sonido")]

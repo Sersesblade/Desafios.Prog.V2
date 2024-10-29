@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 7
   fuerzaSalto: 7
-  expProxNivel: 20
+  expProxNivel: 30
   escalarExp: 10
   exp_Obtenida: 10
   vida: 5
+  vidaMax: 5
   saltoSFX: {fileID: 8300000, guid: 67b5615924116564fa80237bc7c9833f, type: 3}
   colisionSFX: {fileID: 8300000, guid: df6fea1d04bc64a4a939d5b548f6d519, type: 3}
