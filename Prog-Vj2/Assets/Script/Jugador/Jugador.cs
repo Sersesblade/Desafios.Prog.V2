@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Jugador : MonoBehaviour
 {
     [SerializeField]
     private PerfilJugador perfilJugador;
     public PerfilJugador PerfilJugador { get => perfilJugador; }
-
     private Animator miAnimator;
 
-    public void ModificarVida(float puntos)
+    //Eventos del Jugador
+    [SerializeField]
+    private UnityEvent<int> OnLivesChanged;
+
+    private void Start()
+    {
+        OnLivesChanged.Invoke(perfilJugador.Vida);
+    }
+
+
+    public void ModificarVida(int puntos)
     {
         perfilJugador.Vida += puntos;
         Debug.Log(EstasVivo());

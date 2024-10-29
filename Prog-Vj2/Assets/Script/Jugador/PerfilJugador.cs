@@ -44,8 +44,8 @@ public class PerfilJugador : ScriptableObject
     [Header("Configuracion de Atributos")]
     [SerializeField]
     [Range(5, 10)]
-    private float vida = 5f;
-    public float Vida { get => vida; set => vida = value; }
+    private int vida = 5;
+    public int Vida { get => vida; set => vida = value; }
 
     //Configuraciones de los Sonidos.
     [Header("Configuracion de Sonido")]
