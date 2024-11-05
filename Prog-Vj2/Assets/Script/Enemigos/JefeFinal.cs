@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class JefeFinal : MonoBehaviour
@@ -53,10 +54,11 @@ public class JefeFinal : MonoBehaviour
 
     private IEnumerator Disparar()
     {
-        for (int i = 0; i < 3; i++)
+        
+        for (int i = 0; i < 2; i++)
         {
             yield return new WaitForSeconds(0.5f);
-            Instantiate(prefabProyectil, puntoSpawnProyectil.position, Quaternion.identity);
+            Instantiate(prefabProyectil, puntoSpawnProyectil.position, Quaternion.identity);            
         }
     }
 
