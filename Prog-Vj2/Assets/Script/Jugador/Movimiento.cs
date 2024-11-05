@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mover : MonoBehaviour
 {
@@ -42,6 +43,11 @@ public class Mover : MonoBehaviour
         miAnimator.SetInteger("Velocidad", velocidadX);
 
         miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0);
+
+
+        //Para cargar la escena Nivel 1 al presionar "R"
+        if (Input.GetKey(KeyCode.R)) { SceneManager.LoadScene("Nivel 1"); }
+        ///
     }
     private void FixedUpdate()
     {

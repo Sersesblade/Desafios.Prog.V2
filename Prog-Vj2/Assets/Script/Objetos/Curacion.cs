@@ -5,7 +5,7 @@ using UnityEngine;
 public class Curacion : MonoBehaviour
 {
     [Header("Configuracion")]
-    [SerializeField] float puntos = 1f;
+    [SerializeField] int puntos = 1;
 
     private void OnParticleCollision(GameObject other)
     {
@@ -13,8 +13,7 @@ public class Curacion : MonoBehaviour
         {
             Jugador jugador = other.GetComponent<Jugador>();
             jugador.ModificarVida(puntos);
-            Debug.Log("Puntos de daño realizados al jugador " + puntos);
-
+            Debug.Log("Puntos de curacion realizados al jugador " + puntos);
         }
     }
 

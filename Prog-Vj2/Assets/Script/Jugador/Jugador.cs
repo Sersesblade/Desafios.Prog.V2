@@ -1,23 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Jugador : MonoBehaviour
 {
     [SerializeField]
     private PerfilJugador perfilJugador;
     public PerfilJugador PerfilJugador { get => perfilJugador; }
-
     private Animator miAnimator;
 
-    public void ModificarVida(float puntos)
+    //Eventos del Jugador
+    [SerializeField]
+    private UnityEvent<int> OnLivesChanged;
+    
+
+    private void Start()
     {
-        perfilJugador.Vida += puntos;
-        Debug.Log(EstasVivo());
-        if (!EstasVivo())
+        OnLivesChanged.Invoke(perfilJugador.Vida);
+    }
+
+
+    public void ModificarVida(int puntos)
+    {
+        //Condicional para limitar la curacion del jugador.
+        if (perfilJugador.Vida < perfilJugador.VidaMax && puntos > 0 || puntos < 0)
         {
-            Debug.Log("Perdiste");
+            perfilJugador.Vida += puntos;
+            OnLivesChanged.Invoke(perfilJugador.Vida); 
         }
+        Debug.Log(EstasVivo());
+        if (!EstasVivo()){ Debug.Log("Perdiste"); }
     }
 
 
