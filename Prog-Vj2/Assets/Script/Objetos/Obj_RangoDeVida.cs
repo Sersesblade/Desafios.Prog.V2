@@ -31,7 +31,6 @@ public class Obj_RangodeVida : MonoBehaviour
         //Destroy(gameObject, 4f);
     } 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("LOLASO");
         if (collision.CompareTag("Player")){ Destroy(gameObject); }
     }
 }

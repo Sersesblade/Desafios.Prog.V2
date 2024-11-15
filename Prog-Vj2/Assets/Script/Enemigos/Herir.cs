@@ -15,6 +15,14 @@ public class Herir : MonoBehaviour
             Jugador jugador = collision.gameObject.GetComponent<Jugador>();
             jugador.ModificarVida(-puntos);
             Debug.Log(" PUNTOS DE DAÑO REALIZADOS AL JUGADOR " + puntos);
+
+            //Comprueba si el Objecto que colisiono con el player tiene tag Proyectil.
+            if (gameObject.CompareTag("Proyectil")) { gameObject.SetActive(false); };
+
+        }
+        if(gameObject.CompareTag("Proyectil")&& collision.gameObject.name == "Suelo" )
+        {
+            Debug.Log("impacto"); gameObject.SetActive(false);
         }
     }
 }
