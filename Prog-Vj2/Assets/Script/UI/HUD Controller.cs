@@ -64,4 +64,29 @@ public class HUDController : MonoBehaviour
     {
         Instantiate(iconoVida, contenedorVida.transform);
     }
+
+
+    private void OnEnable()
+    {
+        GameEvent.onPause += Pausar;
+        GameEvent.onResume += Resume;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.onPause -= Pausar;
+        GameEvent.onResume -= Resume;
+    }
+
+    private void Pausar()
+    {
+        ActualizarTextoHUD("PAUSADO");
+    }
+
+    private void Resume()
+    {
+        ActualizarTextoHUD(GameManager.Instance.GetScore().ToString());
+    }
+
+
 }
