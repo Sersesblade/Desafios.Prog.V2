@@ -45,9 +45,15 @@ public class Mover : MonoBehaviour
         miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0);
 
 
-        //Para cargar la escena Nivel 1 al presionar "R"
-        if (Input.GetKey(KeyCode.R)) { SceneManager.LoadScene("Nivel 1"); }
-        ///
+        //Tecla para volver a la escena anterior o reiniciar el mismo nivel.
+        if (Input.GetKey(KeyCode.F5)) {
+            //Para cargar la escena Nivel 1 al presionar "F5".
+            //SceneManager.LoadScene("Nivel 1");
+
+            //Para volver a la escena anterior.
+            ApplicacionManager.Instance.GoToPreviousScene();
+        }
+        
     }
     private void FixedUpdate()
     {
