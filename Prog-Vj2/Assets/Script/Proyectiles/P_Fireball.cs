@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Obj_RangodeVida : MonoBehaviour
+public class P_Fireball : MonoBehaviour
 {
     [SerializeField] float velocidad = 5f;
 

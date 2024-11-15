@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectilRecto : MonoBehaviour
+public abstract class Proyectil : MonoBehaviour
 {
     [SerializeField]
     [Range(1f, 30f)]
-    private float speed = 10f;
+    protected float speed = 10f;
 
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     private void Awake()
     {
@@ -20,9 +20,5 @@ public class ProyectilRecto : MonoBehaviour
         Movimiento();
     }
 
-    private void Movimiento()
-    {
-        Vector2 direccion = Vector2.down;
-        rb.velocity = direccion * speed;
-    }
+    protected abstract void Movimiento();
 }
