@@ -22,7 +22,7 @@ public class Herir : MonoBehaviour
         }
         if(gameObject.CompareTag("Proyectil")&& collision.gameObject.name == "Suelo" )
         {
-            Debug.Log("impacto"); gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

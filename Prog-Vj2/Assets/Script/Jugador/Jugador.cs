@@ -13,11 +13,15 @@ public class Jugador : MonoBehaviour
     //Eventos del Jugador
     [SerializeField]
     private UnityEvent<int> OnLivesChanged;
+
+    [SerializeField]
+    private UnityEvent<string> OnTextChange;
     
 
     private void Start()
     {
         OnLivesChanged.Invoke(perfilJugador.Vida);
+        OnTextChange.Invoke(GameManager.Instance.GetScore().ToString());
     }
 
 
@@ -27,9 +31,11 @@ public class Jugador : MonoBehaviour
         if (perfilJugador.Vida < perfilJugador.VidaMax && puntos > 0 || puntos < 0)
         {
             perfilJugador.Vida += puntos;
-            OnLivesChanged.Invoke(perfilJugador.Vida); 
+            OnLivesChanged.Invoke(perfilJugador.Vida);
+
+            
         }
-        Debug.Log(EstasVivo());
+
         if (!EstasVivo()){ Debug.Log("Perdiste"); }
     }
 
@@ -44,5 +50,11 @@ public class Jugador : MonoBehaviour
         if (!collision.gameObject.CompareTag("Meta")) { return; }
 
         Debug.Log("GANASTE");
+    }
+
+    //Funcion que es llamada para actualizar el puntaje en pantalla.
+    public void ActualizarScore()
+    {
+        OnTextChange.Invoke(GameManager.Instance.GetScore().ToString());
     }
 }

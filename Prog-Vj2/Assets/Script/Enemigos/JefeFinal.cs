@@ -46,7 +46,8 @@ public class JefeFinal : MonoBehaviour
                     tiempoActualEspera = tiempoEntreMovimientos;
                     break;
             }
-            Debug.Log(estadoActual);
+
+            //Debug.Log(estadoActual);
             yield return new WaitForSeconds(tiempoActualEspera);
             ActualizarEstado();
         }
