@@ -14,7 +14,7 @@ public class Mover : MonoBehaviour
     private Rigidbody2D miRigidbody2D;
     private Animator miAnimator;
     private SpriteRenderer miSprite;
-    private CircleCollider2D miCollider2D;
+    private BoxCollider2D miCollider2D;
     private Jugador jugador;
 
     private int saltoMask;
@@ -25,7 +25,7 @@ public class Mover : MonoBehaviour
         miRigidbody2D = GetComponent<Rigidbody2D>();
         miAnimator = GetComponent<Animator>();
         miSprite = GetComponent<SpriteRenderer>();
-        miCollider2D = GetComponent<CircleCollider2D>();
+        miCollider2D = GetComponent<BoxCollider2D>();
         saltoMask = LayerMask.GetMask("Pisos", "Plataformas");
 
         jugador = GetComponent<Jugador>();
@@ -35,19 +35,26 @@ public class Mover : MonoBehaviour
     // Codigo ejecutado en cada frame del juego (Intervalo variable)
     private void Update()
     {
-        moverHorizontal = Input.GetAxis("Horizontal");
-        direccion = new Vector2(moverHorizontal, 0f);
+        //Mientras el jugador este vivo, se podra mover.
+        if (jugador.EstasVivo())
+        {
+            moverHorizontal = Input.GetAxis("Horizontal");
+            direccion = new Vector2(moverHorizontal, 0f);
 
-        int velocidadX = (int)miRigidbody2D.velocity.x;
-        miSprite.flipX = velocidadX < 0;
-        miAnimator.SetInteger("Velocidad", velocidadX);
-
-        miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0);
+            int velocidadX = (int)miRigidbody2D.velocity.x;
+            miSprite.flipX = velocidadX < 0;
+            miAnimator.SetInteger("Velocidad", velocidadX);
 
 
-        //Para cargar la escena Nivel 1 al presionar "R"
-        if (Input.GetKey(KeyCode.R)) { SceneManager.LoadScene("Nivel 1"); }
-        ///
+            miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0 && !EnContactoConPlataforma());
+
+        }
+        //Tecla para volver a la escena anterior o reiniciar el mismo nivel.
+        if (Input.GetKey(KeyCode.F5)) {
+            
+            ApplicacionManager.Instance.GoToPreviousScene();
+        }
+        
     }
     private void FixedUpdate()
     {

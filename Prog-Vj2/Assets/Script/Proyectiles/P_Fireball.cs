@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Obj_RangodeVida : MonoBehaviour
+public class P_Fireball : MonoBehaviour
 {
     [SerializeField] float velocidad = 5f;
 
@@ -30,8 +30,5 @@ public class Obj_RangodeVida : MonoBehaviour
         //Destructor en base al tiempo.
         //Destroy(gameObject, 4f);
     } 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("LOLASO");
-        if (collision.CompareTag("Player")){ Destroy(gameObject); }
-    }
+    
 }

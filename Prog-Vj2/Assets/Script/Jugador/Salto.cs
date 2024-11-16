@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Saltar : MonoBehaviour
 {
+    [SerializeField] float rayDistance;
+    [SerializeField] LayerMask groundLayer;
 
-   
+    private Jugador jugador;
+
     // Variables de uso interno en el script
     private bool puedoSaltar = true;
     private bool saltando = false;
@@ -13,7 +16,7 @@ public class Saltar : MonoBehaviour
     // Variable para referenciar otro componente del objeto
     private Rigidbody2D miRigidbody2D;
     private AudioSource miAudioSource;
-    private Jugador jugador;
+   
 
     // Codigo ejecutado cuando el objeto se activa en el nivel
     private void OnEnable()
@@ -26,32 +29,46 @@ public class Saltar : MonoBehaviour
     // Codigo ejecutado en cada frame del juego (Intervalo variable)
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && puedoSaltar)
-        {
-            puedoSaltar = false;
-            if (miAudioSource.isPlaying) { return; }
-            miAudioSource.PlayOneShot(jugador.PerfilJugador.SaltoSFX);
+        puedoSaltar = IsGrounded();
+
+        if(jugador.EstasVivo()){
+            if (Input.GetKeyDown(KeyCode.Space) && puedoSaltar)
+            {
+                saltando = true;
+
+                if (miAudioSource.isPlaying) { return; }
+                miAudioSource.PlayOneShot(jugador.PerfilJugador.SaltoSFX);
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (!puedoSaltar && !saltando)
+        if (saltando)
         {
             miRigidbody2D.AddForce(Vector2.up * jugador.PerfilJugador.FuerzaSalto, ForceMode2D.Impulse);
-            saltando = true;
+            saltando = false;
         }
     }
 
     // Codigo ejecutado cuando el jugador colisiona con otro objeto
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        puedoSaltar = true;
-        saltando = false;
-
         if (miAudioSource.isPlaying) { return; }
         miAudioSource.PlayOneShot(jugador.PerfilJugador.ColisionSFX);
 
     }
 
+    private bool IsGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance,groundLayer);
+        return hit.collider != null;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, Vector2.down * rayDistance);
+    }
 }

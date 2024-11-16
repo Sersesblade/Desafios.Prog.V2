@@ -12,6 +12,9 @@ public class Puzzle : MonoBehaviour
     private Dictionary<string, GameObject> inventario;
 
     private Progresion progresionJugador;
+    private Jugador jugador;
+
+    private int o_Contador = 0;
 
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class Puzzle : MonoBehaviour
         VerObjetivos();
 
         progresionJugador = GetComponent<Progresion>();
+        jugador = GetComponent<Jugador>();
 
     }
 
@@ -38,7 +42,8 @@ public class Puzzle : MonoBehaviour
         foreach (GameObject objetivo in objetivos)
         {
             ///Muestra en consola los objetivos faltantes en orden.
-            Debug.Log(objetivo.name);
+            o_Contador++;
+            Debug.Log("Objetivo "+o_Contador +": "+objetivo.name);
         }
     }
 
@@ -63,6 +68,11 @@ public class Puzzle : MonoBehaviour
             VerObjetivos();
             objetivo.transform.SetParent(mochila.transform);
             progresionJugador.GanarExperiencia(progresionJugador.PerfilJugador.Exp_Obtenida);
+
+            //Se le agrega al jugador 100 puntos al recolectar un coleccionable.
+            GameManager.Instance.AddScore(100);
+            jugador.ActualizarScore();
+            
         }
     }
 

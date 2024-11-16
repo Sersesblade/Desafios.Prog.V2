@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Jugador : MonoBehaviour
 {
     [SerializeField]
@@ -13,11 +14,16 @@ public class Jugador : MonoBehaviour
     //Eventos del Jugador
     [SerializeField]
     private UnityEvent<int> OnLivesChanged;
-    
+
+    [SerializeField]
+    private UnityEvent<string> OnTextChange;
+
 
     private void Start()
     {
+        miAnimator = GetComponent<Animator>();
         OnLivesChanged.Invoke(perfilJugador.Vida);
+        OnTextChange.Invoke(GameManager.Instance.GetScore().ToString());
     }
 
 
@@ -27,14 +33,21 @@ public class Jugador : MonoBehaviour
         if (perfilJugador.Vida < perfilJugador.VidaMax && puntos > 0 || puntos < 0)
         {
             perfilJugador.Vida += puntos;
-            OnLivesChanged.Invoke(perfilJugador.Vida); 
+            OnLivesChanged.Invoke(perfilJugador.Vida);
+
+            
         }
-        Debug.Log(EstasVivo());
-        if (!EstasVivo()){ Debug.Log("Perdiste"); }
+
+        if (!EstasVivo()){
+            //Debug.Log("Perdiste");
+            miAnimator.Play("Muerto");
+            OnTextChange.Invoke("Perdiste. Reset F5");
+
+        }
     }
 
 
-    private bool EstasVivo()
+    public bool EstasVivo()
     {
         return perfilJugador.Vida > 0;
     }
@@ -43,6 +56,13 @@ public class Jugador : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Meta")) { return; }
 
-        Debug.Log("GANASTE");
+        OnTextChange.Invoke("Ganaste. Reset F5");
+        //Debug.Log("GANASTE");
+    }
+
+    //Funcion que es llamada para actualizar el puntaje en pantalla.
+    public void ActualizarScore()
+    {
+        OnTextChange.Invoke(GameManager.Instance.GetScore().ToString());
     }
 }

@@ -11,13 +11,14 @@ public class HUDController : MonoBehaviour
 
     public void ActualizarTextoHUD(string n_texto)
     {
-        Debug.Log("La vida es: " + n_texto);
-        texto.text = n_texto;
+        //Mensaje de Puntuacion en pantalla.
+        texto.text = "Puntuacion: " + n_texto;
+        
     }
 
     public void ActualizarVidasHUD(int vidas)
     {
-        Debug.Log("Actulizacion de Vidas");
+
         if (ContenedorVacio())
         {
             CargarContenedor(vidas);
@@ -63,4 +64,29 @@ public class HUDController : MonoBehaviour
     {
         Instantiate(iconoVida, contenedorVida.transform);
     }
+
+
+    private void OnEnable()
+    {
+        GameEvent.onPause += Pausar;
+        GameEvent.onResume += Resume;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.onPause -= Pausar;
+        GameEvent.onResume -= Resume;
+    }
+
+    private void Pausar()
+    {
+        ActualizarTextoHUD("PAUSADO");
+    }
+
+    private void Resume()
+    {
+        ActualizarTextoHUD(GameManager.Instance.GetScore().ToString());
+    }
+
+
 }

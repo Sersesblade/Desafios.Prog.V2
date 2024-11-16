@@ -23,6 +23,7 @@ public class Coleccionar : MonoBehaviour
 
         colleccionables.Add(nuevoColeccionable);
         nuevoColeccionable.transform.SetParent(mochila.transform);
+        
     }
 
     private void Update()

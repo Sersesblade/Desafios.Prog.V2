@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Meta
   - Coleccionable
+  - Proyectil
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Jugador
   - Enemigo
   - Pisos
-  - 
+  - Proyectil
   - 
   - 
   - 
