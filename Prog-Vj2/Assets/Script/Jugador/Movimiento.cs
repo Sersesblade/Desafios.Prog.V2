@@ -14,7 +14,7 @@ public class Mover : MonoBehaviour
     private Rigidbody2D miRigidbody2D;
     private Animator miAnimator;
     private SpriteRenderer miSprite;
-    private CircleCollider2D miCollider2D;
+    private BoxCollider2D miCollider2D;
     private Jugador jugador;
 
     private int saltoMask;
@@ -25,7 +25,7 @@ public class Mover : MonoBehaviour
         miRigidbody2D = GetComponent<Rigidbody2D>();
         miAnimator = GetComponent<Animator>();
         miSprite = GetComponent<SpriteRenderer>();
-        miCollider2D = GetComponent<CircleCollider2D>();
+        miCollider2D = GetComponent<BoxCollider2D>();
         saltoMask = LayerMask.GetMask("Pisos", "Plataformas");
 
         jugador = GetComponent<Jugador>();
@@ -42,7 +42,8 @@ public class Mover : MonoBehaviour
         miSprite.flipX = velocidadX < 0;
         miAnimator.SetInteger("Velocidad", velocidadX);
 
-        miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0);
+
+        miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0 && !EnContactoConPlataforma());
 
 
         //Tecla para volver a la escena anterior o reiniciar el mismo nivel.

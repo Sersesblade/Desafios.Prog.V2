@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Herir : MonoBehaviour
@@ -17,10 +18,20 @@ public class Herir : MonoBehaviour
             Debug.Log(" PUNTOS DE DAÑO REALIZADOS AL JUGADOR " + puntos);
 
             //Comprueba si el Objecto que colisiono con el player tiene tag Proyectil.
-            if (gameObject.CompareTag("Proyectil")) { gameObject.SetActive(false); };
+            if (gameObject.CompareTag("Proyectil")) {
+
+                //Si es un Fireball, se destruye, sino, se desactiva para su reutilizacion.
+                if (gameObject.name == "Fire-Ball(Clone)") {
+                    Destroy(gameObject); 
+                } 
+                
+                gameObject.SetActive(false);
+                
+            }
+                
 
         }
-        if(gameObject.CompareTag("Proyectil")&& collision.gameObject.name == "Suelo" )
+        if(gameObject.CompareTag("Proyectil") && collision.gameObject.name == "Suelo" )
         {
             gameObject.SetActive(false);
         }

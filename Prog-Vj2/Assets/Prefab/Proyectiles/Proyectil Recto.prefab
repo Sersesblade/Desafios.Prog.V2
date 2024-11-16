@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proyectil Recto
       objectReference: {fileID: 0}
+    - target: {fileID: 5229261070407308194, guid: 5923e5d5a3a51ca4f9f3ec58a4022ae9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229261070407308194, guid: 5923e5d5a3a51ca4f9f3ec58a4022ae9, type: 3}
+      propertyPath: m_TagString
+      value: Proyectil
+      objectReference: {fileID: 0}
     - target: {fileID: 6569013660524949210, guid: 5923e5d5a3a51ca4f9f3ec58a4022ae9, type: 3}
       propertyPath: m_Color.b
       value: 0.08068852

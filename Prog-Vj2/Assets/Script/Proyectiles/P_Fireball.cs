@@ -30,7 +30,5 @@ public class P_Fireball : MonoBehaviour
         //Destructor en base al tiempo.
         //Destroy(gameObject, 4f);
     } 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Player")){ Destroy(gameObject); }
-    }
+    
 }
