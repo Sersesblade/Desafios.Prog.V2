@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 7
   fuerzaSalto: 7
-  expProxNivel: 40
+  expProxNivel: 20
   escalarExp: 10
   exp_Obtenida: 10
   vida: 5

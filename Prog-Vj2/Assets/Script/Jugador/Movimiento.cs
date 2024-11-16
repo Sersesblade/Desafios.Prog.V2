@@ -35,23 +35,23 @@ public class Mover : MonoBehaviour
     // Codigo ejecutado en cada frame del juego (Intervalo variable)
     private void Update()
     {
-        moverHorizontal = Input.GetAxis("Horizontal");
-        direccion = new Vector2(moverHorizontal, 0f);
+        //Mientras el jugador este vivo, se podra mover.
+        if (jugador.EstasVivo())
+        {
+            moverHorizontal = Input.GetAxis("Horizontal");
+            direccion = new Vector2(moverHorizontal, 0f);
 
-        int velocidadX = (int)miRigidbody2D.velocity.x;
-        miSprite.flipX = velocidadX < 0;
-        miAnimator.SetInteger("Velocidad", velocidadX);
+            int velocidadX = (int)miRigidbody2D.velocity.x;
+            miSprite.flipX = velocidadX < 0;
+            miAnimator.SetInteger("Velocidad", velocidadX);
 
 
-        miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0 && !EnContactoConPlataforma());
+            miAnimator.SetBool("EnAire", miRigidbody2D.velocity.y != 0 && !EnContactoConPlataforma());
 
-
+        }
         //Tecla para volver a la escena anterior o reiniciar el mismo nivel.
         if (Input.GetKey(KeyCode.F5)) {
-            //Para cargar la escena Nivel 1 al presionar "F5".
-            //SceneManager.LoadScene("Nivel 1");
-
-            //Para volver a la escena anterior.
+            
             ApplicacionManager.Instance.GoToPreviousScene();
         }
         

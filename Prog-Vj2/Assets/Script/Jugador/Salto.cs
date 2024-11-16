@@ -31,12 +31,14 @@ public class Saltar : MonoBehaviour
     {
         puedoSaltar = IsGrounded();
 
-        if (Input.GetKeyDown(KeyCode.Space) && puedoSaltar)
-        {
-            saltando = true;
+        if(jugador.EstasVivo()){
+            if (Input.GetKeyDown(KeyCode.Space) && puedoSaltar)
+            {
+                saltando = true;
 
-            if (miAudioSource.isPlaying) { return; }
-            miAudioSource.PlayOneShot(jugador.PerfilJugador.SaltoSFX);
+                if (miAudioSource.isPlaying) { return; }
+                miAudioSource.PlayOneShot(jugador.PerfilJugador.SaltoSFX);
+            }
         }
     }
 
